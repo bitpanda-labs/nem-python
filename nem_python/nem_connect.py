@@ -731,7 +731,7 @@ class NemConnect:
 
     @staticmethod
     def estimate_msg_fee(msg, factor=20):
-        if msg is None or msg is b'':
+        if msg is None or msg == b'':
             return {"nem:xem": 0}
         assert type(msg) == bytes, "msg is not bytes"
         fee = (len(msg) // 32 + 1) * 1 / factor
@@ -741,7 +741,7 @@ class NemConnect:
     def estimate_levy_fee(self, mosaics):
         fee = {'nem:xem': 0}
         for namespace_name in mosaics:
-            if namespace_name is 'nem:xem':
+            if namespace_name == 'nem:xem':
                 continue
 
             namespace, name = namespace_name.split(':')
